@@ -1,0 +1,32 @@
+\contentsline {part}{I\hspace {1em}Week 1 and 2}{1}
+\contentsline {section}{\numberline {0.1}Introduction / Definition }{2}
+\contentsline {subsection}{\numberline {0.1.1}What is Machine Learning?}{2}
+\contentsline {subsection}{\numberline {0.1.2}Supervised Learning}{2}
+\contentsline {subsection}{\numberline {0.1.3}Supervised vs. Unsupervised Learning}{3}
+\contentsline {section}{\numberline {0.2}Supervised Learning: Linear regression with 1 variable/feature (aka univariable linear regression)}{3}
+\contentsline {subsection}{\numberline {0.2.1}Application to the house pricing example}{4}
+\contentsline {section}{\numberline {0.3}Multiple features}{5}
+\contentsline {subsection}{\numberline {0.3.1}Hypothesis function for $n$ features}{5}
+\contentsline {subsection}{\numberline {0.3.2} The Cost function $J(\theta )$}{6}
+\contentsline {subsection}{\numberline {0.3.3}Gradient descent algorithm}{6}
+\contentsline {section}{\numberline {0.4}Gradient descent in practice}{7}
+\contentsline {subsection}{\numberline {0.4.1}Feature scaling: how to converge faster}{7}
+\contentsline {subsection}{\numberline {0.4.2}Learning rate $\alpha $: how to converge faster}{8}
+\contentsline {subsection}{\numberline {0.4.3}Polynomial regression}{8}
+\contentsline {section}{\numberline {0.5}Normal Equations}{8}
+\contentsline {chapter}{Appendices}{11}
+\contentsline {chapter}{\numberline {A}Linear Algebra Review}{12}
+\contentsline {section}{\numberline {A.1}1-indexed versus 0-indexed vector matrix}{12}
+\contentsline {section}{\numberline {A.2}Matrix}{12}
+\contentsline {subsection}{\numberline {A.2.1}Matrix size}{12}
+\contentsline {subsection}{\numberline {A.2.2}Matrix Operation}{12}
+\contentsline {subsubsection}{Matrix addition}{12}
+\contentsline {subsubsection}{Matrix scalar multiplication}{13}
+\contentsline {subsubsection}{Multiplication of 2 matrix}{13}
+\contentsline {subsubsection}{Matrix Identity}{13}
+\contentsline {subsubsection}{Matrix Inverse}{13}
+\contentsline {subsubsection}{Transpose matrix $A^{\mathrm {T}}$}{13}
+\contentsline {subsection}{\numberline {A.2.3}Derivative $\nabla _A f(A)$}{14}
+\contentsline {subsection}{\numberline {A.2.4}Trace}{14}
+\contentsline {chapter}{\numberline {B}Matlab}{15}
+\contentsline {chapter}{\numberline {C}Exercise: Gradient Descent Matlab}{17}

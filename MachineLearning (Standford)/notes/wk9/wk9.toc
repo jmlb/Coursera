@@ -1,0 +1,22 @@
+\contentsline {part}{I\hspace {1em}Week 9}{1}
+\contentsline {section}{\numberline {0.1}Anomaly Detection: Intuition}{2}
+\contentsline {section}{\numberline {0.2}Review of Gaussian Distribution}{2}
+\contentsline {subsection}{\numberline {0.2.1}Parameter estimation}{2}
+\contentsline {section}{\numberline {0.3}Anomaly detection}{2}
+\contentsline {subsection}{\numberline {0.3.1}Density estimation: $p(x)$}{2}
+\contentsline {subsection}{\numberline {0.3.2}Anomaly Detection Algorithm}{3}
+\contentsline {subsection}{\numberline {0.3.3}Evaluate an anomaly detection system}{3}
+\contentsline {subsection}{\numberline {0.3.4}Anomaly detection vs. supervised Learning}{4}
+\contentsline {subsection}{\numberline {0.3.5}Features selection}{4}
+\contentsline {section}{\numberline {0.4}Multivariate Gaussian (Normal) distribution}{4}
+\contentsline {section}{\numberline {0.5}Density Estimation}{4}
+\contentsline {subsection}{\numberline {0.5.1}Algorithm}{4}
+\contentsline {subsection}{\numberline {0.5.2}Original Model versus Multi-Variate}{5}
+\contentsline {section}{\numberline {0.6}Recommender Systems}{5}
+\contentsline {subsection}{\numberline {0.6.1}Problem formulation: Predicting movie rating (0 to 5)}{5}
+\contentsline {subsection}{\numberline {0.6.2}How to predict the missing ratings}{5}
+\contentsline {subsection}{\numberline {0.6.3}Collaborative filtering - partI}{7}
+\contentsline {subsection}{\numberline {0.6.4}Collaborative filtering - partII}{7}
+\contentsline {subsubsection}{The algorithm:}{8}
+\contentsline {subsection}{\numberline {0.6.5}Low rank matrix factorization}{8}
+\contentsline {subsection}{\numberline {0.6.6}Mean Normalization}{9}

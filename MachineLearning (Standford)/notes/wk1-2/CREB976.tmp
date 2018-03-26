@@ -1,0 +1,37 @@
+\documentclass[a4paper,12pt]{article}
+
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=5cm, minimum height=1cm,text centered, text width=4.5cm, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=5cm, minimum height=1cm, text centered, text width=4.5cm, draw=black, fill=orange!30]
+
+\begin{document}
+
+\title{Machine Learning}
+\maketitle
+\section{Week 1}
+\subsection{Introduction}
+What is Machine Learning?
+\newline
+"A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E."
+Example: playing checkers.
+E = the experience of playing many games of checkers
+T = the task of playing checkers.
+P = the probability that the program will win the next game.
+
+
+
+
+
+
+\begin{tikzpicture}[node distance=4cm]
+\node (start) [startstop] {Machine Learning};
+\node (pro2a) [process, below of=start, xshift=-4cm] {Supervised Learning }
+\node (pro2b) [process, below of=start, xshift=4cm] {unsupervised Learning};
+\node (pro2c) [process, below of=pro2a, xshift=-2cm] {regression};
+\node (pro2d) [process, below of=pro2a, xshift=2cm] {classification"};
+\end{tikzpicture}
+
+
+\end{document}

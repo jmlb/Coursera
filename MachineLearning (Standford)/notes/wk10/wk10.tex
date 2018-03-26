@@ -1,0 +1,178 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[toc,page]{appendix}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{tcolorbox}
+\usepackage[normalem]{ulem}
+
+\usepackage{setspace}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{shapes, arrows.meta, decorations.pathreplacing, positioning, petri, fit, calc}
+\tikzstyle{startstop} = [circle, minimum size=1cm ,text centered, draw=black]
+\tikzstyle{neuron} = [circle, minimum size=1cm ,text centered, draw=red, fill=gray!30]
+\tikzstyle{neuronEll} = [ellipse, minimum size=1cm ,text centered, text width=2cm, draw=red, fill=gray!30]
+\tikzstyle{process} = [rectangle, minimum width=2cm, minimum height=2cm, text centered, text width=5cm, draw=black, fill=blue!30]
+\tikzstyle{detail} = [rectangle, minimum width=1.5cm, minimum height=0.5cm, text justified, text width=2.6cm, fill=white!30]
+\tikzstyle{smalldetail} = [rectangle, minimum width=2cm, minimum height=1cm, text centered, text width=2cm]
+\tikzstyle{largedetail} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, text width=4cm, fill=white!30]
+\tikzstyle{box} = [rectangle, minimum width=5cm, minimum height=9cm, text centered, text width=4cm, draw=black, fill=white!30]
+
+\usepackage[utf8]{inputenc}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{10} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{10}  % for normal
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+\usepackage{mathtools}
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false            % 
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
+
+\begin{document}
+\tableofcontents
+
+\title{Learning with Large Datasets \\
+Optical Character Recognition}
+\maketitle
+\part{Week 10}
+\section{Stochastic Gradient Descent}
+\subsection{Principle}
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Batch Gradient Descent} & \textbf{Stochastic Gradient Descent} \\
+\hline
+$J_{\text{train}}(\theta) = \frac{1}{2m} \sum_{i=1} ^m (h_{\theta}(x^{(i)} - y^{(i)})^2 $ &  $cost(\theta, (x^{i}, y^{(i)})) = \frac{1}{2} (h_{\theta}(x^{(i)} - y^{(i)})^2 $ \\
+&  $J_{\text{train}}(\theta) = \frac{1}{m} \sum_{i=1} ^m \text{cost}(\theta, (x^{i}, y^{(i)})$ \\
+\hline
+  & \textbf{setp1}: Randomly shuffle the data set \\
+\hline
+Repeat \{   & \textbf{step2}: Repeat \{ \\
+$\theta_j := \theta_j - \alpha \frac{1}{m} \sum_{i=1} ^{m} (h_{\theta}(x^{(i)} - y^{(i)}) x_j ^{(i)}$ & for $i=1,2,3,...m$ \{  \\
+for every $j$ \} & $\theta_j := \theta_j - \alpha (h_{\theta}(x^{(i)} - y^{(i)}) x_j ^{(i)}$ \\
+& for $j=0, 1,..., n$ \\
+& \} \\
+\hline
+\end{tabular}
+\end{table}
+In Stochastic Gradient Descent, $\theta_j$ is adjusted after each training example. Typically, the outer loop can be repeated 1 to 10 times.
+
+\subsection{Stochastic Gradient Descent Convergence}
+To check for convergence:
+\begin{itemize}
+\item During learning, compute $\text{cost}(\theta_1, (x^{(i)}, y^{(i)})$ before updating $\theta$ using $(x^{(i)}, y^{(i)})$, where:
+\begin{align}
+\text{cost}(\theta, (x^{(i)}, y^{(i)}) = \frac{1}{2} (h_{\theta}(x^{(i)} - y^{(i)})^2
+\end{align}
+\item Every 1000 iterations (say), plot  $\text{cost}(\theta_1, (x^{(i)}, y^{(i)})$ average over the last 1000 examples processed by the algorithm. \\
+\item Slowly decrease $\alpha$ overtime to get convergence:
+\begin{align}
+\alpha = \frac{\text{const}1}{\text{iteration \ Nbr} + \text{const}2}
+\end{align}
+However, it is more common to keep $\alpha$ constant.
+\end{itemize}
+
+\section{mini-batch gradient descent}
+\begin{enumerate}
+\item \textbf{Batch Gradient Descent}: use all $m$ examples in each iteration \\
+\item \textbf{stochastic gradient descent}: use 1 example in each iteration \\
+\item \textbf{mini-batch gradient descent}: use $b$ examples (mini batch) in each iteration. \\
+Say $b=10$ and $m=1000$ \\
+\begin{align}
+\begin{split}
+\text{Repeat \{ } &  \\
+& \text{for \ } k= i; i+10: \\
+& \theta_j := \theta_j - \alpha \frac{1}{10} \sum_{i} ^{i+9} (h_{\theta}(x^{(k)} - y^{(k)}) x_j ^{(k)} \\
+& \text{for \ every \ } j=0, ..., n \\
+& \} \\
+\} &
+\end{split}
+\end{align}
+\textbf{Minibatch} can be faster than Stochastic if the loop is vectorized, and therefore enabling parallel calculation.
+\end{enumerate}
+
+\section{Online Learning Algorithm}
+\textbf{Online Learning Algorithm} allows to model problems when there is a continuous stream of data coming in (continuous learning). \\
+\begin{itemize}
+\item \textit{For example, a shipping service website where the user specifies a origin and destination for a package. The company offer to ship the package for some asking price, and users sometimes choose to use the company service ($y=1$) or not ($y=0$).}
+\item Features $x$ capture properties of user, of origin/destination and asking price. We want to learn $p(y=1|x; \theta)$ to optimize price. 
+\item We would then use logistic regression to calculate $p(y=1|x; \theta)$: \\
+Repeat forever \{ \\
+get (x, y) corresponding to a user on website. \\
+online learning algorithm:
+update $\theta$ using $(x, y)$:
+\begin{align}
+\theta_j := \theta_j -\alpha (h_{\theta}(x) - y)x_j 
+\end{align}
+where $j=0, ...n$
+\end{itemize}
+
+\section{MapReduce and Data Parallelism}
+Let's consider a problem with $m=400$ training examples, for which we run batch gradient descent.
+\begin{align}
+\theta_j := \theta_j - \alpha \frac{1}{400} \sum_{i=1} ^400 (h_{\theta}(x^{(i)} - y^{(i)}) x_j ^{(i)}
+\end{align}
+
+In \textbf{MapReduce}, the dataset is splitted in subset (for example 4), so  every single small set would be used and ran simultenously on 4 machines:
+\begin{align}
+\begin{split}
+temp_j ^{(1)} & =\sum_{i=1} ^100 (h_{\theta}(x^{(i)} - y^{(i)}) x_j ^{(i)} \\
+temp_j ^{(2)} & =\sum_{i=101} ^200 (h_{\theta}(x^{(i)} - y^{(i)}) x_j ^{(i)} \\
+temp_j ^{(3)} & =\sum_{i=201} ^300 (h_{\theta}(x^{(i)} - y^{(i)}) x_j ^{(i)} \\
+temp_j ^{(4)} & =\sum_{i=301} ^400 (h_{\theta}(x^{(i)} - y^{(i)}) x_j ^{(i)} \\
+\end{split}
+\end{align}
+The data is then sent to a centralized master server for recombination:
+\begin{align}
+\theta_j := \theta_j - \alpha \frac{1}{400} (temp1 + temp2 + temp3+ temp4)
+\end{align}
+
+If the learning algorithm can be expressed as a summation over the training set, then MapReduce can be used. However, MapReduce can be slow due to Network latency. Ther are a few open source implementation of MapReduce like \textbf{Hadoop} parallelism learning algorithm.\\
+Note that a similar approach can be used on \textbf{multi-core machine} where summation are splitted over several cores. This doe not have the issue of network latency,
+\end{document}

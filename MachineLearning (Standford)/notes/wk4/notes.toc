@@ -1,0 +1,18 @@
+\contentsline {part}{I\hspace {1em}Week 4}{1}
+\contentsline {section}{\numberline {0.1}Introduction}{2}
+\contentsline {section}{\numberline {0.2}Model representation}{2}
+\contentsline {subsection}{\numberline {0.2.1}Single Neuron model : logistic unit}{2}
+\contentsline {subsection}{\numberline {0.2.2}Neuronal model (Diagram representation)}{3}
+\contentsline {subsection}{\numberline {0.2.3}Mathematical representation}{3}
+\contentsline {subsection}{\numberline {0.2.4}Vectorized implementation}{4}
+\contentsline {subsection}{\numberline {0.2.5}what else?}{5}
+\contentsline {section}{\numberline {0.3}Non-Linear classification examples }{5}
+\contentsline {subsection}{\numberline {0.3.1}Exemple I}{5}
+\contentsline {subsection}{\numberline {0.3.2}Logical AND function}{6}
+\contentsline {subsection}{\numberline {0.3.3}Logical OR function}{6}
+\contentsline {subsection}{\numberline {0.3.4}Function Negation NOT $x_1$}{7}
+\contentsline {subsection}{\numberline {0.3.5}Computing $x_1$ XNOR $x_2$}{7}
+\contentsline {subsection}{\numberline {0.3.6}ExampleII: Multiclass classification}{7}
+\contentsline {chapter}{Appendices}{9}
+\contentsline {section}{\numberline {.1}One-vs-All assignment}{10}
+\contentsline {section}{\numberline {.2}Answers to Quiz}{10}

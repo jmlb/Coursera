@@ -1,0 +1,18 @@
+\contentsline {part}{I\hspace {1em}Week 8}{1}
+\contentsline {section}{\numberline {0.1}Supervised Learning vs. Unsupervised Learning}{2}
+\contentsline {section}{\numberline {0.2}Clustering algorithm: $K$-means}{2}
+\contentsline {subsection}{\numberline {0.2.1}Principle}{2}
+\contentsline {section}{\numberline {0.3}Optimization Objective}{3}
+\contentsline {section}{\numberline {0.4}Random Initialization of cluster centroid}{4}
+\contentsline {section}{\numberline {0.5}Choose the Number of Clusters $K$}{5}
+\contentsline {section}{\numberline {0.6}Dimensionality Reduction}{5}
+\contentsline {subsection}{\numberline {0.6.1}Data Visualization}{5}
+\contentsline {subsection}{\numberline {0.6.2}Principal Component Analysis (PCA) algorithm}{6}
+\contentsline {subsubsection}{Formulation}{6}
+\contentsline {subsubsection}{Reconstruction from compressed representation}{7}
+\contentsline {subsection}{\numberline {0.6.3}Choose the number of principal components}{8}
+\contentsline {section}{\numberline {0.7}Advice for applying PCA}{8}
+\contentsline {subsection}{\numberline {0.7.1}applying PCA for supervised learning speedup}{8}
+\contentsline {subsection}{\numberline {0.7.2}Application of PCA}{9}
+\contentsline {chapter}{Appendices}{10}
+\contentsline {section}{\numberline {.1}Cost function versus iteration}{11}

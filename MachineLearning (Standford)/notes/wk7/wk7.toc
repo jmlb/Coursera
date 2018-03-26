@@ -1,0 +1,20 @@
+\contentsline {part}{I\hspace {1em}Week 7}{1}
+\contentsline {section}{\numberline {0.1}Optimization objectives}{2}
+\contentsline {subsection}{\numberline {0.1.1}cost function}{2}
+\contentsline {subsection}{\numberline {0.1.2}SVM Optimization Objective}{2}
+\contentsline {section}{\numberline {0.2}SVM - Large Margin Classifier}{3}
+\contentsline {subsection}{\numberline {0.2.1}constraint for SVM}{3}
+\contentsline {subsection}{\numberline {0.2.2}For large C}{4}
+\contentsline {subsection}{\numberline {0.2.3}Visualization of the decision boundary for large C}{4}
+\contentsline {section}{\numberline {0.3}Mathematics behind Large Margin classifier}{5}
+\contentsline {section}{\numberline {0.4}SVM Kernels I}{6}
+\contentsline {subsection}{\numberline {0.4.1}Example}{6}
+\contentsline {subsection}{\numberline {0.4.2}landmarks}{7}
+\contentsline {subsection}{\numberline {0.4.3}How to choose the landmarks}{8}
+\contentsline {subsection}{\numberline {0.4.4}How to choose C and $\sigma $}{9}
+\contentsline {section}{\numberline {0.5}How to use an SVM}{9}
+\contentsline {section}{\numberline {0.6}Multi-class Classification}{9}
+\contentsline {chapter}{Appendices}{10}
+\contentsline {section}{\numberline {.1}question}{11}
+\contentsline {section}{\numberline {.2}Vector inner product ($u^T v$)}{11}
+\contentsline {section}{\numberline {.3}SVM Intro}{11}

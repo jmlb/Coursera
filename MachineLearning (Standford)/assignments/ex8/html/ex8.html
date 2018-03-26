@@ -1,0 +1,297 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Machine Learning Online Class</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-05-24"><meta name="DC.source" content="ex8.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Machine Learning Online Class</h1><!--introduction--><pre>Exercise 8 | Anomaly Detection and Collaborative Filtering</pre><pre>Instructions
+------------</pre><pre>This file contains code that helps you get started on the
+exercise. You will need to complete the following functions:</pre><pre>   estimateGaussian.m
+   selectThreshold.m
+   cofiCostFunc.m</pre><pre>For this exercise, you will not need to change any code in this file,
+or any other files other than those mentioned above.</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Initialization</a></li><li><a href="#2">================== Part 1: Load Example Dataset  ===================</a></li><li><a href="#3">================== Part 2: Estimate the dataset statistics ===================</a></li><li><a href="#4">================== Part 3: Find Outliers ===================</a></li><li><a href="#5">================== Part 4: Multidimensional Outliers ===================</a></li></ul></div><h2>Initialization<a name="1"></a></h2><pre class="codeinput">clear ; close <span class="string">all</span>; clc
+</pre><h2>================== Part 1: Load Example Dataset  ===================<a name="2"></a></h2><pre>We start this exercise by using a small dataset that is easy to
+visualize.</pre><pre>Our example case consists of 2 network server statistics across
+several machines: the latency and throughput of each machine.
+This exercise will help us find possibly faulty (or very fast) machines.</pre><pre class="codeinput">fprintf(<span class="string">'Visualizing example dataset for outlier detection.\n\n'</span>);
+
+<span class="comment">%  The following command loads the dataset. You should now have the</span>
+<span class="comment">%  variables X, Xval, yval in your environment</span>
+load(<span class="string">'ex8data1.mat'</span>);
+
+<span class="comment">%  Visualize the example dataset</span>
+plot(X(:, 1), X(:, 2), <span class="string">'bx'</span>);
+axis([0 30 0 30]);
+xlabel(<span class="string">'Latency (ms)'</span>);
+ylabel(<span class="string">'Throughput (mb/s)'</span>);
+
+fprintf(<span class="string">'Program paused. Press enter to continue.\n'</span>);
+pause
+</pre><pre class="codeoutput">Visualizing example dataset for outlier detection.
+
+Program paused. Press enter to continue.
+</pre><h2>================== Part 2: Estimate the dataset statistics ===================<a name="3"></a></h2><pre>For this exercise, we assume a Gaussian distribution for the dataset.</pre><pre>We first estimate the parameters of our assumed Gaussian distribution,
+then compute the probabilities for each of the points and then visualize
+both the overall distribution and where each of the points falls in
+terms of that distribution.</pre><pre class="codeinput">fprintf(<span class="string">'Visualizing Gaussian fit.\n\n'</span>);
+
+<span class="comment">%  Estimate my and sigma2</span>
+[mu sigma2] = estimateGaussian(X);
+
+<span class="comment">%  Returns the density of the multivariate normal at each data point (row)</span>
+<span class="comment">%  of X</span>
+p = multivariateGaussian(X, mu, sigma2);
+
+<span class="comment">%  Visualize the fit</span>
+visualizeFit(X,  mu, sigma2);
+xlabel(<span class="string">'Latency (ms)'</span>);
+ylabel(<span class="string">'Throughput (mb/s)'</span>);
+
+fprintf(<span class="string">'Program paused. Press enter to continue.\n'</span>);
+pause;
+</pre><pre class="codeoutput">Visualizing Gaussian fit.
+
+
+mu =
+
+   14.1122   14.9977
+
+</pre><pre class="codeoutput error">Error using det
+Matrix must be square.
+
+Error in multivariateGaussian (line 19)
+p = (2 * pi) ^ (- k / 2) * det(Sigma2) ^ (-0.5) * ...
+
+Error in ex8 (line 61)
+p = multivariateGaussian(X, mu, sigma2);
+</pre><h2>================== Part 3: Find Outliers ===================<a name="4"></a></h2><pre>Now you will find a good epsilon threshold using a cross-validation set
+probabilities given the estimated Gaussian distribution</pre><pre class="codeinput">pval = multivariateGaussian(Xval, mu, sigma2);
+
+[epsilon F1] = selectThreshold(yval, pval);
+fprintf(<span class="string">'Best epsilon found using cross-validation: %e\n'</span>, epsilon);
+fprintf(<span class="string">'Best F1 on Cross Validation Set:  %f\n'</span>, F1);
+fprintf(<span class="string">'   (you should see a value epsilon of about 8.99e-05)\n\n'</span>);
+
+<span class="comment">%  Find the outliers in the training set and plot the</span>
+outliers = find(p &lt; epsilon);
+
+<span class="comment">%  Draw a red circle around those outliers</span>
+hold <span class="string">on</span>
+plot(X(outliers, 1), X(outliers, 2), <span class="string">'ro'</span>, <span class="string">'LineWidth'</span>, 2, <span class="string">'MarkerSize'</span>, 10);
+hold <span class="string">off</span>
+
+fprintf(<span class="string">'Program paused. Press enter to continue.\n'</span>);
+pause;
+</pre><h2>================== Part 4: Multidimensional Outliers ===================<a name="5"></a></h2><pre>We will now use the code from the previous part and apply it to a
+harder problem in which more features describe each datapoint and only
+some features indicate whether a point is an outlier.</pre><pre class="codeinput"><span class="comment">%  Loads the second dataset. You should now have the</span>
+<span class="comment">%  variables X, Xval, yval in your environment</span>
+load(<span class="string">'ex8data2.mat'</span>);
+
+<span class="comment">%  Apply the same steps to the larger dataset</span>
+[mu sigma2] = estimateGaussian(X);
+
+<span class="comment">%  Training set</span>
+p = multivariateGaussian(X, mu, sigma2);
+
+<span class="comment">%  Cross-validation set</span>
+pval = multivariateGaussian(Xval, mu, sigma2);
+
+<span class="comment">%  Find the best threshold</span>
+[epsilon F1] = selectThreshold(yval, pval);
+
+fprintf(<span class="string">'Best epsilon found using cross-validation: %e\n'</span>, epsilon);
+fprintf(<span class="string">'Best F1 on Cross Validation Set:  %f\n'</span>, F1);
+fprintf(<span class="string">'# Outliers found: %d\n'</span>, sum(p &lt; epsilon));
+fprintf(<span class="string">'   (you should see a value epsilon of about 1.38e-18)\n\n'</span>);
+pause
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Machine Learning Online Class
+%  Exercise 8 | Anomaly Detection and Collaborative Filtering
+%
+%  Instructions
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+%
+%  This file contains code that helps you get started on the
+%  exercise. You will need to complete the following functions:
+%
+%     estimateGaussian.m
+%     selectThreshold.m
+%     cofiCostFunc.m
+%
+%  For this exercise, you will not need to change any code in this file,
+%  or any other files other than those mentioned above.
+%
+
+%% Initialization
+clear ; close all; clc
+
+%% ================== Part 1: Load Example Dataset  ===================
+%  We start this exercise by using a small dataset that is easy to
+%  visualize.
+%
+%  Our example case consists of 2 network server statistics across
+%  several machines: the latency and throughput of each machine.
+%  This exercise will help us find possibly faulty (or very fast) machines.
+%
+
+fprintf('Visualizing example dataset for outlier detection.\n\n');
+
+%  The following command loads the dataset. You should now have the
+%  variables X, Xval, yval in your environment
+load('ex8data1.mat');
+
+%  Visualize the example dataset
+plot(X(:, 1), X(:, 2), 'bx');
+axis([0 30 0 30]);
+xlabel('Latency (ms)');
+ylabel('Throughput (mb/s)');
+
+fprintf('Program paused. Press enter to continue.\n');
+pause
+
+
+%% ================== Part 2: Estimate the dataset statistics ===================
+%  For this exercise, we assume a Gaussian distribution for the dataset.
+%
+%  We first estimate the parameters of our assumed Gaussian distribution, 
+%  then compute the probabilities for each of the points and then visualize 
+%  both the overall distribution and where each of the points falls in 
+%  terms of that distribution.
+%
+fprintf('Visualizing Gaussian fit.\n\n');
+
+%  Estimate my and sigma2
+[mu sigma2] = estimateGaussian(X);
+
+%  Returns the density of the multivariate normal at each data point (row) 
+%  of X
+p = multivariateGaussian(X, mu, sigma2);
+
+%  Visualize the fit
+visualizeFit(X,  mu, sigma2);
+xlabel('Latency (ms)');
+ylabel('Throughput (mb/s)');
+
+fprintf('Program paused. Press enter to continue.\n');
+pause;
+
+%% ================== Part 3: Find Outliers ===================
+%  Now you will find a good epsilon threshold using a cross-validation set
+%  probabilities given the estimated Gaussian distribution
+% 
+
+pval = multivariateGaussian(Xval, mu, sigma2);
+
+[epsilon F1] = selectThreshold(yval, pval);
+fprintf('Best epsilon found using cross-validation: %e\n', epsilon);
+fprintf('Best F1 on Cross Validation Set:  %f\n', F1);
+fprintf('   (you should see a value epsilon of about 8.99e-05)\n\n');
+
+%  Find the outliers in the training set and plot the
+outliers = find(p < epsilon);
+
+%  Draw a red circle around those outliers
+hold on
+plot(X(outliers, 1), X(outliers, 2), 'ro', 'LineWidth', 2, 'MarkerSize', 10);
+hold off
+
+fprintf('Program paused. Press enter to continue.\n');
+pause;
+
+%% ================== Part 4: Multidimensional Outliers ===================
+%  We will now use the code from the previous part and apply it to a 
+%  harder problem in which more features describe each datapoint and only 
+%  some features indicate whether a point is an outlier.
+%
+
+%  Loads the second dataset. You should now have the
+%  variables X, Xval, yval in your environment
+load('ex8data2.mat');
+
+%  Apply the same steps to the larger dataset
+[mu sigma2] = estimateGaussian(X);
+
+%  Training set 
+p = multivariateGaussian(X, mu, sigma2);
+
+%  Cross-validation set
+pval = multivariateGaussian(Xval, mu, sigma2);
+
+%  Find the best threshold
+[epsilon F1] = selectThreshold(yval, pval);
+
+fprintf('Best epsilon found using cross-validation: %e\n', epsilon);
+fprintf('Best F1 on Cross Validation Set:  %f\n', F1);
+fprintf('# Outliers found: %d\n', sum(p < epsilon));
+fprintf('   (you should see a value epsilon of about 1.38e-18)\n\n');
+pause
+
+
+
+
+##### SOURCE END #####
+--></body></html>

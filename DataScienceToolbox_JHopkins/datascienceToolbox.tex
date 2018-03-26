@@ -1,0 +1,334 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage{multicol}
+\usepackage[toc,page]{appendix}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{soul}
+\usepackage{tcolorbox}
+\usepackage{multirow}% http://ctan.org/pkg/multirow
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{shapes, arrows.meta, decorations.pathreplacing, positioning, petri, fit, calc}
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=2cm, minimum height=0.5cm,text centered, text width=3cm, draw=black, fill=gray!30]
+\tikzstyle{process} = [rectangle, minimum width=2cm, minimum height=0.5cm, text centered, text width=3cm, draw=black, fill=blue!30]
+\tikzstyle{detail} = [rectangle, minimum width=7cm, minimum height=0.5cm, text justified, text width=6.5cm, draw=black, fill=white!30]
+\tikzstyle{smalldetail} = [rectangle, minimum width=3.5cm, minimum height=0.5cm, text justified, text width=3cm, draw=white, fill=white!30]
+\tikzstyle{decision} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+
+\usepackage[utf8]{inputenc}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{10} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{10}  % for normal
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+%frame=tb,                         % Any extra options here
+showstringspaces=false            % 
+}}
+\newcommand{\code}[1]{\texttt{#1} }
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
+\begin{document}
+\tableofcontents
+
+\title{Data Scientist Toolbox \\
+John's Hopkins University \\
+Jeff Leek, Roger Peng, Brian Caffo}
+\maketitle
+\part{Week 1: What do data scientists do?}
+\begin{itemize}
+\item define the question
+\item identify the ideal data set
+\item gather data (from database or web)
+\item clean the data
+\item Perform exploratory analysis (plots, clustering)
+\item Statistical prediction/modeling
+\item interpret/challenge results
+\item synthesize/write up results
+\item create reproducible code
+\item distribute results to others (interactive graphs, etc...)
+\end{itemize}
+
+\part{Command Line Interface (CLI)}
+Use \textbf{Git Bash} from \textbf{Git} for windows to open a terminal.
+\section{Command Line Interface}
+CLI commands follow this recipe: \code{\textcolor[rgb]{0,0,1}{command} \textcolor[rgb]{1,0,0}{-flags} arguments}:
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|l|}
+  \hline
+  \code{command} & the CLI command which does a specifc task \\
+	\hline
+  \code{flags} & flags \\
+	\hline
+  \code{arguments} & binary \\
+
+	\hline
+\end{tabular}
+\end{table}
+
+\textbf{List of CLI commands:}\\
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}
+  \hline
+  \code{\textcolor[rgb]{0,0,1}{pwd}} & print working directory \\
+	\hline
+  \code{\textcolor[rgb]{0,0,1}{ls}} & list files and folders in current directory \\
+	\hline
+  \code{\textcolor[rgb]{0,0,1}{ls} \textcolor[rgb]{1,0,0}{-a}} & list hidden/unhidden files/folders \\
+	\hline
+  \code{\textcolor[rgb]{0,0,1}{ls} \textcolor[rgb]{1,0,0}{-al}} & list details for hidden/unhidden files/folders \\
+	\hline
+	\code{\textcolor[rgb]{0,0,1}{cd} folder} & go to \textit{folder}\\
+	\hline
+	\code{\textcolor[rgb]{0,0,1}{cd}..} & change directory \\
+	\hline
+	\code{\textcolor[rgb]{0,0,1}{mkdir} fldr} & create folder \textit{fldr} \\
+	\hline
+	\code{\textcolor[rgb]{0,0,1}{touch} test\_file} & Create an empty file \\
+	\hline
+	\code{\textcolor[rgb]{0,0,1}{cp} fname fldr}  & copy file \textit{fname} in folder \textit{fldr} \\
+	\hline
+	\code{\textcolor[rgb]{0,0,1}{cp} \textcolor[rgb]{1,0,0}{-r} fldr1 fldr2}  & copy folder \textit{fldr1} to \textit{fldr2}  \\
+	& (\code{\-r} flag stands for recursive) \\
+	\hline
+	\code{\textcolor[rgb]{0,0,1}{rm} \textcolor[rgb]{1,0,0}{-r} More\_docs} & Delete entire directories and its content \\
+	\hline
+	\code{\textcolor[rgb]{0,0,1}{mv} fname fldr1} & move file \textit{fname} to \textit{fldr1} \\
+	\hline
+	\code{\textcolor[rgb]{0,0,1}{mv} fname renfname} & rename file \textit{fname} to \textit{renfname} \\
+	\hline
+	\code{\textcolor[rgb]{0,0,1}{echo} Hello World!} & print \\
+	\hline
+	\code{\textcolor[rgb]{0,0,1}{date}} & current date \\ 
+  \hline
+\end{tabular}
+\end{table}
+
+
+
+
+
+\part{Git(local) and GitHub(remote)}
+\section{Configuration: Username and Email}
+Open \textbf{Git Batch}:
+\begin{tcolorbox}
+\begin{python}
+$ git config --global user.name "Your Name Here"
+$ git config --global user.email "Your email@Here.com"
+#Confirm config
+$ git --list #Return: (email/username)
+\end{python}
+\end{tcolorbox}
+
+\section{Create a GitHub Repository}
+\subsection{Start a repository from scratch}
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|l|}
+  \hline
+  1) & go to \textbf{Github.com} and click on new \\
+	\hline
+	2) & create a repository name and a brief description \\
+		\hline
+	3) & select \textbf{Public} \\
+		\hline
+	4) & check the box next to: "\textit{Initialize this repository with a README}" \\
+  \hline \hline
+\end{tabular}
+\end{table}
+
+\subsection{Create a local copy}
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|l|}
+  \hline
+	\hline
+  1) & open \textbf{GitBash} \\
+	  \hline 
+	2) & create a directory where to store copy of the repository \\
+	  \hline 
+	3) & navigate to the directory \\
+	  \hline 
+	4) & check the box next to: "Initialize this repository with a README" \\
+	  \hline 
+	5) & initialize a local Git repository in this directory \\
+	   & \code{\$ \textcolor[rgb]{0,0,1}{git} init } \\
+	  \hline 
+	6) & Point your local repository at the remote repository: \\
+	   & \code{\$ \textcolor[rgb]{0,0,1}{git} remote add origin \textcolor[rgb]{0,0.58,0}{https://github.com/username/name\_repo.git}} \\
+  \hline 
+\end{tabular}
+\end{table}
+
+\subsection{"Fork" another user's repository}
+Make a copy of the repository of someone else's:
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|l|}
+  \hline 
+1) & Go to the repository and click on Fork \\
+\hline
+2) & Make a local copy by "cloning" \\
+\hline
+3) & \code{\$ git clone \textcolor[rgb]{0,0.58,0}{https://github.com/username/name\_repo.git}} \\
+  \hline 
+\end{tabular}
+\end{table}
+
+\subsection{add to the index}
+Adding (new files) to local repository
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}
+  \hline 
+\code{\textcolor[rgb]{0,0,1}{git} add.} & adds all new files to be tracked by Git \\
+\hline
+\code{\textcolor[rgb]{0,0,1}{git} add \textcolor[rgb]{1,0,0}{-u}} & update tracking for files that changed names or were deleted \\
+\hline
+\code{\textcolor[rgb]{0,0,1}{git} add \textcolor[rgb]{1,0,0}{A}} & does both \\
+  \hline 
+\end{tabular}
+\end{table}
+
+\subsection{Commiting}
+Commit to be saved as an intermediate version.
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}
+  \hline 
+\code { \textcolor[rgb]{0,0,1}{git} commit \textcolor[rgb]{1,0,0}{-m} "message" } & \textit{message} is a description of what you did \\
+& This only update local repo \\
+  \hline 
+\end{tabular}
+\end{table}
+\subsection{Pushing}
+Update on remote (Github)
+\begin{tcolorbox}
+\begin{python}
+$ git push
+\end{python}
+\end{tcolorbox}
+
+\subsection{Branches}
+Sometime, you are working on a project with a version being used by many people. You may not want to edit that version, you can create a \textbf{branch}: \\
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}
+  \hline 
+\code{ \textcolor[rgb]{0,0,1}{git} checkout \textcolor[rgb]{1,0,0}{-b} \textcolor[rgb]{0.24,0.7,0.44}{branchename} }  & Create a branch \\
+\hline
+\code{ \textcolor[rgb]{0,0,1}{git} branch }  & check what branch you are on \\
+\hline
+\code{ \textcolor[rgb]{0,0,1}{git} checkout \textcolor[rgb]{0.24,0.7,0.44}{master} }  & switch to master branch \\
+\hline
+\end{tabular}
+\end{table}
+\subsection{Pull requests}
+If you "fork" someone's repo or have multiple branches you will both be working separately. If you want to merge in your changes into the other branch: 
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}
+  \hline 
+1) & Go to your branch \\
+\hline
+2) & Pull request (the request will be send to all parties) \\
+  \hline 
+\end{tabular}
+\end{table}
+\part{Markdown: .md}
+
+\begin{tcolorbox}
+\begin{python}
+## This is a 2ndary heading
+### This is a 3rdary heading
+\end{python}
+\end{tcolorbox}
+
+\part{R for statistical computing}
+Program: R and R-studio
+\begin{tcolorbox}
+\begin{python}
+?rnorm  %access help file for function 'rnorm'
+help.search("rnorm") %search help file
+\end{python}
+\end{tcolorbox}
+
+\section{R-packages}
+\begin{tcolorbox}
+\begin{python}
+a <- available.packages()  % check available packages
+head(rownames(a),3) % show the names of the 1st 3 packages
+install.packages("arg")  % install new package of name "arg"
+install.packages(c("pack1", "pack2", "pack3"))  % install multiple packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%go to Install packages in R-studio and load R-packages
+library(packagename}
+search()  % show all functions in package
+\end{python}
+\end{tcolorbox}
+
+\subsection{RTools}
+\textbf{R-Tools} is a collection of tools to build R-packages in Windows.\\
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}
+  \hline 
+	\hline
+1) & Open R Studio \\
+\hline
+2) & Install the devtools R package \\
+\hline
+3) & \code{find.package("devtools")} to check if package is installed ('True') \\
+\hline
+4) & \code{install.packages("devtools")} \\
+\hline
+5) & \code{library(devtools)} to load the package \\
+\hline
+	\hline
+\end{tabular}
+\end{table}
+\end{document}

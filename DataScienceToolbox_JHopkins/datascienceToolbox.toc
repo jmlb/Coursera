@@ -1,0 +1,18 @@
+\contentsline {part}{I\hspace {1em}Week 1: What do data scientists do?}{1}
+\contentsline {part}{II\hspace {1em}Command Line Interface (CLI)}{3}
+\contentsline {section}{\numberline {0.1}Command Line Interface}{4}
+\contentsline {part}{III\hspace {1em}Git(local) and GitHub(remote)}{5}
+\contentsline {section}{\numberline {0.2}Configuration: Username and Email}{6}
+\contentsline {section}{\numberline {0.3}Create a GitHub Repository}{6}
+\contentsline {subsection}{\numberline {0.3.1}Start a repository from scratch}{6}
+\contentsline {subsection}{\numberline {0.3.2}Create a local copy}{6}
+\contentsline {subsection}{\numberline {0.3.3}"Fork" another user's repository}{6}
+\contentsline {subsection}{\numberline {0.3.4}add to the index}{6}
+\contentsline {subsection}{\numberline {0.3.5}Commiting}{7}
+\contentsline {subsection}{\numberline {0.3.6}Pushing}{7}
+\contentsline {subsection}{\numberline {0.3.7}Branches}{7}
+\contentsline {subsection}{\numberline {0.3.8}Pull requests}{7}
+\contentsline {part}{IV\hspace {1em}Markdown: .md}{8}
+\contentsline {part}{V\hspace {1em}R for statistical computing}{10}
+\contentsline {section}{\numberline {0.4}R-packages}{11}
+\contentsline {subsection}{\numberline {0.4.1}RTools}{11}
